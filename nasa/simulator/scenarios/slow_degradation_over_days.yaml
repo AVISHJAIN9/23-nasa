@@ -1,0 +1,49 @@
+name: slow_degradation_over_days
+description: "Long-duration Mars transit progression tracking cardiovascular deconditioning and cumulative radiation accrual from Sol 5 to Sol 90."
+duration_seconds: 7200.0
+sampling_rate_hz: 0.5
+start_hour: 12.0
+initial_mission_day: 5.0
+mission_day_speedup: 0.0118   # advances ~85 mission days across 7200 seconds (~11.8 sols per 1000s)
+
+phases:
+  # Sol 5 - 15: Post-fluid-shift early cruise
+  - name: "early_cruise"
+    start_s: 0.0
+    end_s: 1800.0
+    workload: 0.1
+    co2_ppm: 3000.0
+    ambient_temp_c: 22.0
+    motion_intensity: 0.15
+    spe_active: false
+
+  # Sol 15 - 40: Moderate deconditioning setting in
+  - name: "mid_cruise_progression"
+    start_s: 1800.0
+    end_s: 3600.0
+    workload: 0.1
+    co2_ppm: 3100.0
+    ambient_temp_c: 22.2
+    motion_intensity: 0.15
+    spe_active: false
+
+  # Sol 40 - 65: Solar energetic particle event alert (temporary dose rate rise)
+  - name: "solar_particle_warning"
+    start_s: 3600.0
+    end_s: 5400.0
+    workload: 0.15
+    co2_ppm: 3200.0
+    ambient_temp_c: 22.5
+    motion_intensity: 0.2
+    spe_active: true
+    spe_rate_msv_per_hour: 4.5
+
+  # Sol 65 - 90: Late-stage deconditioning prior to Mars orbit insertion
+  - name: "pre_insertion_deconditioned"
+    start_s: 5400.0
+    end_s: 7200.0
+    workload: 0.1
+    co2_ppm: 3000.0
+    ambient_temp_c: 22.0
+    motion_intensity: 0.15
+    spe_active: false

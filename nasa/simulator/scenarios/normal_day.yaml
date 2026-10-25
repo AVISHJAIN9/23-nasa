@@ -1,0 +1,88 @@
+name: normal_day
+description: "Nominal 24-hour diurnal cycle with circadian variation, scheduled exercise, meals, and rest."
+duration_seconds: 86400.0
+sampling_rate_hz: 1.0
+start_hour: 0.0
+initial_mission_day: 42.0
+
+phases:
+  # 00:00 - 06:30 (Sleep: deep circadian nadir)
+  - name: "night_sleep"
+    start_s: 0.0
+    end_s: 23400.0
+    workload: 0.0
+    co2_ppm: 2700.0
+    ambient_temp_c: 21.0
+    motion_intensity: 0.0
+
+  # 06:30 - 08:30 (Wake-up, breakfast & morning briefing)
+  - name: "morning_routine"
+    start_s: 23400.0
+    end_s: 30600.0
+    workload: 0.08
+    co2_ppm: 2900.0
+    ambient_temp_c: 22.0
+    motion_intensity: 0.15
+
+  # 08:30 - 12:30 (Payload research & module maintenance)
+  - name: "payload_operations"
+    start_s: 30600.0
+    end_s: 45000.0
+    workload: 0.14
+    co2_ppm: 3100.0
+    ambient_temp_c: 22.5
+    motion_intensity: 0.2
+
+  # 12:30 - 13:30 (Midday meal & rest)
+  - name: "midday_meal"
+    start_s: 45000.0
+    end_s: 48600.0
+    workload: 0.05
+    co2_ppm: 3200.0
+    ambient_temp_c: 22.5
+    motion_intensity: 0.1
+
+  # 13:30 - 15:30 (Afternoon system checks)
+  - name: "afternoon_tasks"
+    start_s: 48600.0
+    end_s: 55800.0
+    workload: 0.12
+    co2_ppm: 3300.0
+    ambient_temp_c: 23.0
+    motion_intensity: 0.2
+
+  # 15:30 - 17:30 (Prescribed aerobic & resistance exercise session)
+  - name: "countermeasure_exercise"
+    start_s: 55800.0
+    end_s: 63000.0
+    workload: 0.65
+    co2_ppm: 3600.0
+    ambient_temp_c: 23.5
+    motion_intensity: 0.75
+
+  # 17:30 - 19:30 (Post-exercise cooldown, hygiene, maintenance)
+  - name: "cooldown_and_hygiene"
+    start_s: 63000.0
+    end_s: 70200.0
+    workload: 0.1
+    co2_ppm: 3200.0
+    ambient_temp_c: 22.5
+    motion_intensity: 0.2
+
+  # 19:30 - 22:30 (Evening meal, crew sync & leisure)
+  - name: "evening_leisure"
+    start_s: 70200.0
+    end_s: 81000.0
+    workload: 0.05
+    co2_ppm: 3000.0
+    ambient_temp_c: 22.0
+    motion_intensity: 0.1
+
+  # 22:30 - 24:00 (Pre-sleep wind-down)
+  - name: "pre_sleep"
+    start_s: 81000.0
+    end_s: 86400.0
+    workload: 0.0
+    co2_ppm: 2800.0
+    ambient_temp_c: 21.5
+    motion_intensity: 0.02

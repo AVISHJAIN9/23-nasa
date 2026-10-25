@@ -1,0 +1,141 @@
+version: '3.8'
+
+services:
+  api:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: astrocare-api
+    restart: unless-stopped
+    ports:
+      - "4000:4000"
+    environment:
+      ASTRO_ENV: dev
+      ASTRO_PORT: 4000
+      ASTRO_APP_VERSION: 0.1.0
+      ASTRO_MISSION_MODE: mars
+      ASTRO_LOG_LEVEL: info
+      ASTRO_MONGODB_URI: mongodb://mongo:27017/astrocare
+      ASTRO_REDIS_URL: redis://redis:6379
+      ASTRO_EVENT_BUS_DRIVER: redis
+      ASTRO_REDIS_REQUIRED: "true"
+      ASTRO_CORS_ORIGINS: http://localhost:5173,http://localhost:3000
+      ASTRO_JWT_ACCESS_SECRET: dev_insecure_access_secret_min_32_chars_long!
+      ASTRO_JWT_REFRESH_SECRET: dev_insecure_refresh_secret_min_32_chars_long!
+      ASTRO_INGEST_API_KEY: dev_insecure_ingest_api_key_min_32_characters!
+      ASTRO_SEED_USERS_ON_START: "true"
+      ASTRO_FLAG_ML_ENABLED: "true"
+      ASTRO_FLAG_DEMO_PANEL_ENABLED: "true"
+      ASTRO_FUSION_ENABLED: "true"
+    depends_on:
+      mongo:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:4000/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+      start_period: 15s
+
+  mongo:
+    image: mongo:7
+    container_name: astrocare-mongo
+    restart: unless-stopped
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+    healthcheck:
+      test: ["CMD", "mongosh", "--quiet", "--eval", "db.adminCommand('ping')"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  redis:
+    image: redis:7-alpine
+    container_name: astrocare-redis
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  ml-sidecar:
+    build:
+      context: ./ml-sidecar
+      dockerfile: Dockerfile
+    container_name: astrocare-ml-sidecar
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+    environment:
+      ASTRO_BACKEND_URL: http://api:4000
+      ASTRO_ML_API_KEY: dev_insecure_ml_api_key_min_32_characters!
+      PORT: 8000
+      HOST: "0.0.0.0"
+    depends_on:
+      - api
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+
+  prometheus:
+    image: prom/prometheus:v2.51.0
+    container_name: astrocare-prometheus
+    restart: unless-stopped
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./docker/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - prometheus_data:/prometheus
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+      - '--web.console.libraries=/usr/share/prometheus/console_libraries'
+      - '--web.console.templates=/usr/share/prometheus/consoles'
+    depends_on:
+      - api
+
+  grafana:
+    image: grafana/grafana:10.4.0
+    container_name: astrocare-grafana
+    restart: unless-stopped
+    ports:
+      - "3001:3000"
+    environment:
+      - GF_SECURITY_ADMIN_USER=admin
+      - GF_SECURITY_ADMIN_PASSWORD=astrocare_admin
+      - GF_USERS_ALLOW_SIGN_UP=false
+    volumes:
+      - ./docker/grafana/provisioning:/etc/grafana/provisioning:ro
+      - ./docker/grafana/dashboards:/var/lib/grafana/dashboards:ro
+      - grafana_data:/var/lib/grafana
+    depends_on:
+      - prometheus
+
+  dashboard:
+    build:
+      context: ./dashboard
+      dockerfile: Dockerfile
+    container_name: astrocare-dashboard
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    depends_on:
+      - api
+
+volumes:
+  mongo_data:
+  redis_data:
+  prometheus_data:
+  grafana_data:
+

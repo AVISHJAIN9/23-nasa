@@ -1,0 +1,61 @@
+name: heavy_exercise
+description: "High-Intensity Interval Training (HIIT) on CEVIS cycle ergometer with warm-up, intervals, and active recovery."
+duration_seconds: 3600.0
+sampling_rate_hz: 1.0
+start_hour: 16.0
+initial_mission_day: 45.0
+
+phases:
+  # 0 - 600s (Warm-up at 30% VO2max)
+  - name: "warm_up"
+    start_s: 0.0
+    end_s: 600.0
+    workload: 0.3
+    co2_ppm: 3100.0
+    ambient_temp_c: 22.0
+    motion_intensity: 0.35
+
+  # 600 - 1200s (High-Intensity Interval 1 at 85% VO2max)
+  - name: "interval_1"
+    start_s: 600.0
+    end_s: 1200.0
+    workload: 0.85
+    co2_ppm: 3600.0
+    ambient_temp_c: 23.0
+    motion_intensity: 0.85
+
+  # 1200 - 1500s (Active Recovery at 35% VO2max)
+  - name: "recovery_1"
+    start_s: 1200.0
+    end_s: 1500.0
+    workload: 0.35
+    co2_ppm: 3400.0
+    ambient_temp_c: 23.0
+    motion_intensity: 0.4
+
+  # 1500 - 2100s (Maximal Effort Interval 2 at 95% VO2max)
+  - name: "interval_2_peak"
+    start_s: 1500.0
+    end_s: 2100.0
+    workload: 0.95
+    co2_ppm: 3900.0
+    ambient_temp_c: 23.8
+    motion_intensity: 0.9
+
+  # 2100 - 2400s (Active Recovery at 35% VO2max)
+  - name: "recovery_2"
+    start_s: 2100.0
+    end_s: 2400.0
+    workload: 0.35
+    co2_ppm: 3500.0
+    ambient_temp_c: 23.5
+    motion_intensity: 0.4
+
+  # 2400 - 3600s (Cool-down and return to rest)
+  - name: "cool_down"
+    start_s: 2400.0
+    end_s: 3600.0
+    workload: 0.08
+    co2_ppm: 3200.0
+    ambient_temp_c: 22.5
+    motion_intensity: 0.15

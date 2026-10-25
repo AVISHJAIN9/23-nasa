@@ -1,0 +1,41 @@
+name: spike_artifacts
+description: "Injects single-sample rate-of-change spikes from static discharge and sensor motion artifacts."
+duration_seconds: 3600.0
+sampling_rate_hz: 1.0
+start_hour: 11.0
+initial_mission_day: 35.0
+
+phases:
+  - name: "monitoring"
+    start_s: 0.0
+    end_s: 3600.0
+    workload: 0.1
+    co2_ppm: 3000.0
+    ambient_temp_c: 22.0
+    motion_intensity: 0.25
+
+spikes:
+  # Single sample heart_rate jump (+45 bpm, exceeding max_rate_per_s of 25)
+  - time_s: 180.0
+    metric: "heart_rate"
+    delta: 48.0
+
+  # Systolic pressure artifact (+55 mmHg, exceeding max_rate_per_s of 40)
+  - time_s: 600.0
+    metric: "systolic"
+    delta: 58.0
+
+  # Diastolic pressure artifact (+38 mmHg, exceeding max_rate_per_s of 30)
+  - time_s: 600.0
+    metric: "diastolic"
+    delta: 38.0
+
+  # Respiration rate motion spike (+22 bpm, exceeding max_rate_per_s of 10)
+  - time_s: 1200.0
+    metric: "resp_rate"
+    delta: 24.0
+
+  # Temperature probe static artifact (+2.8 °C, exceeding max_rate_per_s of 0.5)
+  - time_s: 2100.0
+    metric: "temp_c"
+    delta: 2.8

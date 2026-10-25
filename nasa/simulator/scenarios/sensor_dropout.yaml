@@ -1,0 +1,35 @@
+name: sensor_dropout
+description: "Demonstrates intermittent pulse oximeter and chest lead-off dropouts (value: null) and recovery."
+duration_seconds: 3600.0
+sampling_rate_hz: 1.0
+start_hour: 14.0
+initial_mission_day: 30.0
+
+phases:
+  - name: "full_observation"
+    start_s: 0.0
+    end_s: 3600.0
+    workload: 0.1
+    co2_ppm: 3000.0
+    ambient_temp_c: 22.0
+    motion_intensity: 0.2
+
+dropouts:
+  # SpO2 pulse oximeter loose lead (2 minute dropout)
+  - start_s: 300.0
+    end_s: 420.0
+    metric: "spo2"
+
+  # Respiration chest band unclipped (2.5 minute dropout)
+  - start_s: 900.0
+    end_s: 1050.0
+    metric: "resp_rate"
+
+  # Blood pressure cuff inflation timeout / disconnection (3 minute dropout)
+  - start_s: 1800.0
+    end_s: 1980.0
+    metric: "systolic"
+
+  - start_s: 1800.0
+    end_s: 1980.0
+    metric: "diastolic"

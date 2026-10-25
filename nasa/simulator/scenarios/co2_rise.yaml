@@ -1,0 +1,43 @@
+name: co2_rise
+description: "Cabin carbon dioxide scrubbing malfunction causing hypercapnia, tachypnea, mild tachycardia, and subsequent recovery."
+duration_seconds: 7200.0
+sampling_rate_hz: 1.0
+start_hour: 10.0
+initial_mission_day: 50.0
+
+phases:
+  # 0 - 1200s (Nominal ECLSS scrubber baseline)
+  - name: "nominal_baseline"
+    start_s: 0.0
+    end_s: 1200.0
+    workload: 0.1
+    co2_ppm: 2800.0
+    ambient_temp_c: 22.0
+    motion_intensity: 0.15
+
+  # 1200 - 2700s (ECLSS desiccant bed saturated, progressive CO2 accumulation)
+  - name: "scrubber_saturation"
+    start_s: 1200.0
+    end_s: 2700.0
+    workload: 0.1
+    co2_ppm: 5800.0
+    ambient_temp_c: 22.5
+    motion_intensity: 0.15
+
+  # 2700 - 5100s (Severe hypercapnia, high ventilatory drive, tachycardia, headache symptoms)
+  - name: "acute_hypercapnia"
+    start_s: 2700.0
+    end_s: 5100.0
+    workload: 0.1
+    co2_ppm: 9500.0
+    ambient_temp_c: 23.2
+    motion_intensity: 0.15
+
+  # 5100 - 7200s (Secondary LiOH scrubber canister deployed, cabin scrubbed down)
+  - name: "recovery_scrubbing"
+    start_s: 5100.0
+    end_s: 7200.0
+    workload: 0.05
+    co2_ppm: 3200.0
+    ambient_temp_c: 22.0
+    motion_intensity: 0.1

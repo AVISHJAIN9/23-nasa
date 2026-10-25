@@ -1,0 +1,38 @@
+name: cardiac_event_during_blackout
+description: "Acute paroxysmal supraventricular tachycardia and hemodynamic instability occurring during deep-space comms blackout."
+duration_seconds: 3600.0
+sampling_rate_hz: 1.0
+start_hour: 15.0
+initial_mission_day: 65.0
+
+phases:
+  # 0 - 600s: Stable baseline before orbital blackout entry
+  - name: "pre_blackout_baseline"
+    start_s: 0.0
+    end_s: 600.0
+    workload: 0.1
+    co2_ppm: 3000.0
+    ambient_temp_c: 22.0
+    motion_intensity: 0.15
+    cardiac_anomaly: false
+
+  # 600 - 2400s: Severe supraventricular tachycardia during comms blackout
+  # Onboard autonomous decision support activates; data is buffered locally for ground replay
+  - name: "acute_tachycardia_blackout"
+    start_s: 600.0
+    end_s: 2400.0
+    workload: 0.0
+    co2_ppm: 3000.0
+    ambient_temp_c: 22.0
+    motion_intensity: 0.25
+    cardiac_anomaly: true
+
+  # 2400 - 3600s: Medical stabilization by Crew Medical Officer (vagal maneuvers & adenosine protocol)
+  - name: "post_treatment_stabilization"
+    start_s: 2400.0
+    end_s: 3600.0
+    workload: 0.0
+    co2_ppm: 3000.0
+    ambient_temp_c: 22.0
+    motion_intensity: 0.1
+    cardiac_anomaly: false
