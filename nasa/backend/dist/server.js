@@ -131,8 +131,8 @@ async function main() {
         alertPublisher,
         telemetryBridge,
     });
-    // Attach HTTP server and Socket.IO realtime layer
-    const httpServer = createServer(app);
+    // Switch handler to initialized Express app
+    requestHandler = app;
     const io = createSocketServer(httpServer, {
         settings,
         qualityStateStore,
@@ -142,17 +142,7 @@ async function main() {
         eventBus,
         deliveryPolicy,
     });
-    httpServer.listen(settings.port, '0.0.0.0', () => {
-        logger.info({
-            port: settings.port,
-            env: settings.env,
-            mission_mode: settings.mission_mode,
-            version: settings.app_version,
-        }, `🚀 AstroCare Backend running on http://localhost:${settings.port}`);
-        logger.info(`📖 OpenAPI JSON available at http://localhost:${settings.port}/v1/openapi.json`);
-        logger.info(`📚 Swagger UI documentation available at http://localhost:${settings.port}/docs`);
-        logger.info(`⚡ Socket.IO /ingest and /live namespaces ready for realtime streaming`);
-    });
+    logger.info(`🚀 AstroCare Backend fully initialized and handling traffic`);
     const shutdown = async (signal) => {
         logger.info(`Received ${signal}. Shutting down gracefully...`);
         telemetryBridge.stop();
