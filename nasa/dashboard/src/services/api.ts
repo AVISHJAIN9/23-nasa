@@ -50,7 +50,10 @@ export class ApiService {
       headers['Authorization'] = `Bearer ${this.token}`;
     }
 
-    const response = await fetch(path, {
+    const BASE_URL = import.meta.env.VITE_API_URL || 'https://aj-nasa-astrocare.onrender.com';
+    const fullUrl = path.startsWith('http') ? path : `${BASE_URL}${path}`;
+
+    const response = await fetch(fullUrl, {
       ...options,
       headers,
     });

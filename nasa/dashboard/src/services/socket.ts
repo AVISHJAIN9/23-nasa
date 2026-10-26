@@ -18,8 +18,10 @@ export class SocketService {
       this.socket.disconnect();
     }
 
-    // Connect to /live namespace on current host (via Vite proxy or direct)
-    this.socket = io('/live', {
+    // Connect to /live namespace on backend URL
+    const WS_URL = import.meta.env.VITE_WS_URL || 'https://aj-nasa-astrocare.onrender.com';
+    this.socket = io(WS_URL, {
+      path: '/live',
       transports: ['websocket', 'polling'],
       auth: { token },
       autoConnect: true,
