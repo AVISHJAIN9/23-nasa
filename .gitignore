@@ -4,7 +4,7 @@
 *.key
 *.pem
 node_modules/
-dist/
+nasa/frontend/dist/
 build/
 target/
 .DS_Store
@@ -18,7 +18,7 @@ __pycache__/
 *.pem
 *.key
 .vitepress/cache
-.vitepress/dist
+**/.vitepress/dist
 node_modules
 # Secrets protection
 .secrets.local
