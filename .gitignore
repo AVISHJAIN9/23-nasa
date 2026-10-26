@@ -20,3 +20,6 @@ __pycache__/
 .vitepress/cache
 .vitepress/dist
 node_modules
+# Secrets protection
+.secrets.local
+*.local
