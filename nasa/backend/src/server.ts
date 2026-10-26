@@ -136,7 +136,7 @@ async function main(): Promise<void> {
     deliveryPolicy,
   });
 
-  httpServer.listen(settings.port, () => {
+  httpServer.listen(settings.port, '0.0.0.0', () => {
     logger.info(
       {
         port: settings.port,

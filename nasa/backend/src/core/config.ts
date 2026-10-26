@@ -210,7 +210,7 @@ export function parseConfig(env: Record<string, string | undefined> = process.en
   const rawConfig: Record<string, unknown> = {};
 
   if (env['ASTRO_ENV'] !== undefined) rawConfig['env'] = env['ASTRO_ENV'];
-  if (env['ASTRO_PORT'] !== undefined) rawConfig['port'] = env['ASTRO_PORT'];
+  if (env['ASTRO_PORT'] !== undefined || env['PORT'] !== undefined) rawConfig['port'] = env['ASTRO_PORT'] || env['PORT'];
   if (env['ASTRO_APP_VERSION'] !== undefined) rawConfig['app_version'] = env['ASTRO_APP_VERSION'];
   if (env['ASTRO_CORS_ORIGINS'] !== undefined)
     rawConfig['cors_origins'] = env['ASTRO_CORS_ORIGINS'];
