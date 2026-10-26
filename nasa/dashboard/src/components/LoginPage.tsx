@@ -11,7 +11,7 @@ const DEMO_ACCOUNTS = [
     roleTitle: 'Flight Surgeon',
     name: 'Dr. Sarah Connor',
     email: 'surgeon@astrocare.nasa.gov',
-    password: 'SurgeonSecret#2026',
+    password: '',
     badge: 'badge-blue',
     icon: '🩺',
     desc: 'Unredacted clinical triage, baseline z-scores, snooze & clinical notes',
@@ -20,7 +20,7 @@ const DEMO_ACCOUNTS = [
     roleTitle: 'Mission Control',
     name: 'Gene Kranz (Flight Director)',
     email: 'control@astrocare.nasa.gov',
-    password: 'ControlSecret#2026',
+    password: '',
     badge: 'badge-purple',
     icon: '📡',
     desc: 'Telemetry & flight awareness with confidential medical notes redacted',
@@ -29,7 +29,7 @@ const DEMO_ACCOUNTS = [
     roleTitle: 'Lead Astronaut',
     name: 'Cmdr. Alex Mercer',
     email: 'mercer@astrocare.nasa.gov',
-    password: 'AstroSecret#2026',
+    password: '',
     badge: 'badge-green',
     icon: '👨‍🚀',
     desc: 'Personal biometrics, autonomous checklists & emergency declaration',
@@ -38,7 +38,7 @@ const DEMO_ACCOUNTS = [
     roleTitle: 'Medical Officer',
     name: 'Lt. Maya Chen',
     email: 'chen@astrocare.nasa.gov',
-    password: 'MedicSecret#2026',
+    password: '',
     badge: 'badge-green',
     icon: '💉',
     desc: 'Crew medical officer with unredacted clinical triage & protocols',
@@ -47,7 +47,7 @@ const DEMO_ACCOUNTS = [
     roleTitle: 'System Admin',
     name: 'Dr. Marcus Vance',
     email: 'admin@astrocare.nasa.gov',
-    password: 'AdminSecret#2026',
+    password: '',
     badge: 'badge-amber',
     icon: '🛡️',
     desc: 'Ledger audit verification, comms overrides, system configuration',
@@ -55,8 +55,8 @@ const DEMO_ACCOUNTS = [
 ];
 
 export const LoginPage: React.FC<LoginPageProps> = ({ onLoginSuccess }) => {
-  const [email, setEmail] = useState('surgeon@astrocare.nasa.gov');
-  const [password, setPassword] = useState('SurgeonSecret#2026');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 

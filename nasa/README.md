@@ -116,11 +116,11 @@ The database seeder provisions accounts across all four system roles:
 
 | Role | Email | Password | Access Clearance |
 | :--- | :--- | :--- | :--- |
-| **Admin** | `admin@astrocare.nasa.gov` | `AdminSecret#2026` | Full platform administration & system config |
-| **Flight Surgeon** | `surgeon@astrocare.nasa.gov` | `SurgeonSecret#2026` | Full medical triage, clinical notes & alert resolution |
-| **Mission Control** | `control@astrocare.nasa.gov` | `ControlSecret#2026` | Operational flight status (clinical notes redacted) |
-| **Astronaut** | `mercer@astrocare.nasa.gov` | `AstroSecret#2026` | Self-telemetry viewing & emergency declaration |
-| **Crew Medical Officer** | `chen@astrocare.nasa.gov` | `MedicSecret#2026` | Onboard astronaut with delegated medical triage rights |
+| **Admin** | `admin@astrocare.nasa.gov` | `<CONFIGURED_VIA_ENV>` | Full platform administration & system config |
+| **Flight Surgeon** | `surgeon@astrocare.nasa.gov` | `<CONFIGURED_VIA_ENV>` | Full medical triage, clinical notes & alert resolution |
+| **Mission Control** | `control@astrocare.nasa.gov` | `<CONFIGURED_VIA_ENV>` | Operational flight status (clinical notes redacted) |
+| **Astronaut** | `mercer@astrocare.nasa.gov` | `<CONFIGURED_VIA_ENV>` | Self-telemetry viewing & emergency declaration |
+| **Crew Medical Officer** | `chen@astrocare.nasa.gov` | `<CONFIGURED_VIA_ENV>` | Onboard astronaut with delegated medical triage rights |
 
 ---
 
