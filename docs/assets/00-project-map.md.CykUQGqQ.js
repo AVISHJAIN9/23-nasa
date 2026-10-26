@@ -1,0 +1,31 @@
+import{_ as a,o as n,c as e,a2 as p}from"./chunks/framework.yFlg5W3A.js";const u=JSON.parse('{"title":"Project Map: 25 nasa (AstroCare)","description":"","frontmatter":{},"headers":[],"relativePath":"00-project-map.md","filePath":"00-project-map.md"}'),t={name:"00-project-map.md"};function i(r,s,o,l,c,d){return n(),e("div",null,[...s[0]||(s[0]=[p(`<h1 id="project-map-25-nasa-astrocare" tabindex="-1">Project Map: 25 nasa (AstroCare) <a class="header-anchor" href="#project-map-25-nasa-astrocare" aria-label="Permalink to &quot;Project Map: 25 nasa (AstroCare)&quot;">​</a></h1><h2 id="folder-structure" tabindex="-1">Folder Structure <a class="header-anchor" href="#folder-structure" aria-label="Permalink to &quot;Folder Structure&quot;">​</a></h2><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>25 nasa/</span></span>
+<span class="line"><span>├── docs/                               # Comprehensive VitePress Documentation Suite</span></span>
+<span class="line"><span>├── nasa/                               # AstroCare Core Project</span></span>
+<span class="line"><span>│   ├── backend/                        # Node.js 20 / TypeScript 5 Strict ESM Server</span></span>
+<span class="line"><span>│   │   ├── src/</span></span>
+<span class="line"><span>│   │   │   ├── config/                 # Environment &amp; mission profile configs</span></span>
+<span class="line"><span>│   │   │   ├── models/                 # Mongoose Time-Series &amp; Alert schemas</span></span>
+<span class="line"><span>│   │   │   ├── routes/                 # Express 5 REST controllers &amp; OpenAPI routes</span></span>
+<span class="line"><span>│   │   │   ├── services/               # Core business logic:</span></span>
+<span class="line"><span>│   │   │   │   ├── ingestService.ts    # Telemetry ingestion &amp; idempotency leases</span></span>
+<span class="line"><span>│   │   │   │   ├── qualityService.ts   # Plausibility checks, spike &amp; flatline filters</span></span>
+<span class="line"><span>│   │   │   │   ├── linkEmulator.ts     # OWLT dynamic delay simulator (Mars/Moon/ISS)</span></span>
+<span class="line"><span>│   │   │   │   ├── storeAndForward.ts  # Orbital blackout queue &amp; outbox pattern</span></span>
+<span class="line"><span>│   │   │   │   ├── fusionEngine.ts     # Alert deduplication &amp; priority scoring</span></span>
+<span class="line"><span>│   │   │   │   ├── mlClient.ts         # HTTP bridge to Python ML sidecar</span></span>
+<span class="line"><span>│   │   │   │   └── liveService.ts      # Socket.IO telemetry &amp; alert streaming</span></span>
+<span class="line"><span>│   │   │   ├── bus/                    # Redis Streams &amp; In-Memory EventBus adapters</span></span>
+<span class="line"><span>│   │   │   └── server.ts               # Application entry point &amp; lifecycle</span></span>
+<span class="line"><span>│   │   ├── tests/                      # 49 Vitest unit, integration &amp; security test suites</span></span>
+<span class="line"><span>│   │   ├── package.json</span></span>
+<span class="line"><span>│   │   └── tsconfig.json</span></span>
+<span class="line"><span>│   ├── dashboard/                      # React 18 / Vite Astronaut &amp; Surgeon Client</span></span>
+<span class="line"><span>│   │   ├── src/</span></span>
+<span class="line"><span>│   │   │   ├── components/             # Real-time vital graphs, alert inboxes, comms status</span></span>
+<span class="line"><span>│   │   │   └── App.tsx</span></span>
+<span class="line"><span>│   │   └── package.json</span></span>
+<span class="line"><span>│   ├── ml-sidecar/                     # Python FastAPI Predictive Clinical ML Service</span></span>
+<span class="line"><span>│   │   ├── ml_sidecar/                 # Feature extraction &amp; decompensation model</span></span>
+<span class="line"><span>│   │   └── requirements.txt</span></span>
+<span class="line"><span>│   ├── simulator/                      # Biometric multi-astronaut telemetry generator</span></span>
+<span class="line"><span>│   └── docker-compose.yml              # Multi-container orchestration (App, Mongo, Redis, ML)</span></span></code></pre></div><h2 id="tech-stack-dependencies" tabindex="-1">Tech Stack &amp; Dependencies <a class="header-anchor" href="#tech-stack-dependencies" aria-label="Permalink to &quot;Tech Stack &amp; Dependencies&quot;">​</a></h2><ul><li><code>express@^5.0.1</code>: High-performance HTTP server with async error propagation.</li><li><code>socket.io@^4.8.1</code>: Bidirectional low-latency event gateway.</li><li><code>ioredis@^6.0.0</code>: Redis Streams client for delayed queues and pub/sub.</li><li><code>mongoose@^8.12.1</code>: MongoDB object modeling with Time-Series support.</li><li><code>zod@^3.24.2</code>: Strict runtime schema validation and type inference.</li><li><code>pino@^9.6.0</code>: High-speed JSON structured logger.</li><li><code>vitest@^3.0.7</code>: Modern ESM test runner with native mock support.</li></ul>`,5)])])}const h=a(t,[["render",i]]);export{u as __pageData,h as default};
